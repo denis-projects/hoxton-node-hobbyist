@@ -10,12 +10,12 @@ app.use(express.json())
 const prisma = new PrismaClient({ log: ['query', 'error', 'info', 'warn'] });
 
 app.get('/users', async (req, res) => {
-    const users = await prisma.user.findMany()
+    const users = await prisma.user.findMany({ include: { hobbies: true } })
     res.send(users)
 })
 
 app.get('/hobbies', async (req, res) => {
-    const hobbies = await prisma.hobby.findMany()
+    const hobbies = await prisma.hobby.findMany({ include: { users: true } })
     res.send(hobbies)
 })
 
