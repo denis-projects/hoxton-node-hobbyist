@@ -30,6 +30,9 @@ app.post('/users', async (req, res) => {
                     create: hobby
                 }))
             }
+        },
+        include: {
+            hobbies: true
         }
     })
     res.send(newUsers)
